@@ -7,22 +7,40 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.alert import Alert
 from selenium.common.exceptions import TimeoutException
 from datetime import datetime
+from pathlib import Path
+from dotenv import load_dotenv
+import os
 import time
 
 # Horários válidos para marcação
 horarios_validos = ["11:00", "16:00", "17:00", "20:00"]
 
-# Credenciais fornecidas
-usuario = "33016547"
-senha = "31032019Mss@"
+# Carrega variáveis do arquivo .env
+load_dotenv()
+usuario = os.getenv("USUARIO")
+senha = os.getenv("SENHA")
+
+if not usuario or not senha:
+    print("❌ Erro: Credenciais não encontradas no arquivo .env")
+    exit(1)
 
 # Configuração do navegador
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
 
-# Caminho do ChromeDriver
-service = Service(r"C:\Users\pse.100280\Downloads\Ponto\chromedriver-win64\chromedriver-win64\chromedriver.exe")
-driver = webdriver.Chrome(service=service, options=chrome_options)
+# Caminho do ChromeDriver local
+chromedriver_path = Path(__file__).parent / "chromedriver-win64" / "chromedriver-win64" / "chromedriver.exe"
+service = Service(str(chromedriver_path))
+
+try:
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+except Exception as e:
+    print(f"⚠️ Aviso: {e}")
+    print("Tentando continuar mesmo com incompatibilidade de versão...")
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
 try:
     print("🔄 Acessando site de ponto...")
