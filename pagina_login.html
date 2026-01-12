@@ -1,0 +1,217 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<title>Autenticação do Usuário</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+	
+
+<script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/44LqIOwVrGhp2lJ3fODa493O/recaptcha__pt_br.js" crossorigin="anonymous" integrity="sha384-wZmzeAu9mO+1HmbgYCeQ6UDIhau1a0f/Uzi2z9wPwvluAZvi/DY6nuTQe6cqXcBR"></script><script type="text/javascript" src="scripts/norber.js">
+//<![CDATA[
+//]]>
+</script>
+<link rel="stylesheet" href="scripts/NorberComum.css" type="text/css">
+<link rel="stylesheet" href="scripts/menu.css" type="text/css">
+
+<script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+function checkrequired(which) {
+
+//Criptografando a senha --------------------------------------------------------------------
+	var Protcriptografada = new Array();
+	var pass=true;
+	var vProtcrip = document.getElementById("senhacrip");
+	var vProtdigitada = document.getElementById("requiredsenha");
+	var tProt = 0;
+	try
+    {
+		tProt = vProtdigitada.value.length;
+		var i2 = 0;
+		for(i=0;i<=350;i++)
+		{
+			randomico = Math.floor(Math.random() * 122) + 1;
+			if (randomico < 48)
+				randomico = 122 - randomico;
+			if (i == 15 || i == 38 || i == 76 || i == 78 || i == 120 || i == 128 || i == 141 || i == 149 || i == 161 || i == 173 || i == 196 || i == 206 || i == 210 || i == 215 || i == 220 || i == 225 || i == 230 || i == 235 || i == 240 || i == 245 || i == 250 || i == 255 || i == 260 || i == 265 || i == 270 || i == 275 || i == 280 || i == 285 || i == 290 || i == 295 || i == 301 || i == 302 || i == 303 || i == 304 || i == 305 || i == 306 || i == 307 || i == 308 || i == 309 || i == 310 || i == 311 || i == 312 || i == 313 || i == 314 || i == 315 || i == 316 || i == 317 || i == 318 || i == 319 || i == 320 || i == 321 || i == 322 || i == 323 || i == 324 || i == 325 || i == 326 || i == 327 || i == 328 || i == 329 || i == 330 || i == 331 || i == 332 || i == 333 || i == 334 || i == 335 || i == 336 || i == 337 || i == 338 || i == 339 || i == 340 || i == 341 || i == 342 || i == 343 || i == 344 || i == 345 || i == 346 || i == 347 || i == 348 || i == 349 || i == 350)
+				if(i2 < tProt)
+				{
+					Protcriptografada[i] = vProtdigitada.value.charAt(i2);
+					i2 = i2 + 1;
+				}
+				else
+					Protcriptografada[i] = String.fromCharCode(randomico);
+			else
+				if (i == 5)
+					Protcriptografada[i] = tProt;
+				else
+					Protcriptografada[i] = String.fromCharCode(randomico);
+		}
+    }
+    catch(err)
+    {
+    }	
+	//alert(Protcriptografada)
+    //alert(Protcriptografada[15] + " " + Protcriptografada[38] + " " + Protcriptografada[76] + " " + Protcriptografada[78] + " " + Protcriptografada[120] + " " + Protcriptografada[128] + " " + Protcriptografada[141] + " " + Protcriptografada[149] + " " + Protcriptografada[161] + " " + Protcriptografada[173] + " " + Protcriptografada[196] + " " + Protcriptografada[206])
+    try
+    {
+        vProtcrip.value = Protcriptografada;
+    }
+    catch(err)
+    {
+    }
+//Fim da criptografia -----------------------------------------------------------------------	
+
+
+	
+}
+
+function FocarPrimeiro(){
+	if (document.forms[0].requiredusuario.value==''){
+		document.forms[0].requiredusuario.focus();
+	}else{
+		document.forms[0].requiredsenha.focus();
+	}
+}
+
+//]]>
+if(typeof String.prototype.trim !== 'function')
+{
+	String.prototype.trim = function(){
+		return this.replace(/^\s+|\s+$/g, '');
+	};
+}
+
+function SetarCodOperESenha()
+{
+    codOperador = document.getElementById("cmbPerfil").options[document.getElementById("cmbPerfil").selectedIndex].text.split("-")[0].trim();
+    senhaOperador = document.getElementById("cmbPerfil").value;
+    document.getElementById("requiredusuario").value = codOperador;
+    document.getElementById("requiredsenha").value = senhaOperador;
+}
+
+function AbrirTelaConfirmaDados(telaDesbloqueio) {
+	
+	if (telaDesbloqueio) {
+		window.open('../WebPontoDotNet/Usuario/ConfirmarDadosUsuario.aspx?desbloq=true', 'ConfirmarDadosUsuario', 'top=300,left=400,width=491,height=210,menubar=no,toolbar=no,scrollbars=no,resizable=no');
+	}
+	else {
+		window.open('../WebPontoDotNet/Usuario/ConfirmarDadosUsuario.aspx', 'ConfirmarDadosUsuario', 'top=300,left=400,width=491,height=190,menubar=no,toolbar=no,scrollbars=no,resizable=no');
+	}
+	//document.forms[0].submit();
+}
+
+
+</script>
+
+
+                              <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="QR8SX-KLXJA-4UTHM-FV4Q4-3ZQQ7",function(){function e(){if(!o){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,i.parentNode.appendChild(e),o=!0}}function t(e){o=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(i.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",i.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"QR8SX-KLXJA-4UTHM-FV4Q4-3ZQQ7";var i=document.currentScript||document.getElementsByTagName("script")[0],o=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!o)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),i.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="facadmp2ygxgqjqacqmwuaaabfundeax-f-fa6943235-clienttons-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"39","ak.cp":"1706715","ak.ai":parseInt("1221795",10),"ak.ol":"0","ak.cr":7,"ak.ipv":6,"ak.proto":"h2","ak.rid":"b9d0f65","ak.r":47703,"ak.a2":n,"ak.m":"","ak.n":"ff","ak.bpcip":"2804:1b1:fac1:ae68::","ak.cport":57261,"ak.gh":"92.123.9.150","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1758564375","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==UxgL3g+0aFngm5A2DCOyn9cKEuR8PvPnC/7lq5U9y5VfVjETQW5MeL+u9rhUrLVHt3cuLpvqyvJ8HMXSTRBN6T+PtdRmCLFx1CitFzX5E58ecMn+44lBoekeED95W3EGb1fp/BDoVoC3Po52XZMo2W7D3kb4EHbBu9ZIv/QSyBPylHoUgz79xrb6IHoJEIuflLXNvdNNl0+oxI2eA8DXjYS2G4ozWK9Titgc2NzVwqwXzevQOyvyGjPmSeQUcHDptx0cRU9irKSJSKTECaKsiP8fBSPBstMzbKH5styf38f1zZgwylrTWUluWM+TGqaDiNT+XFBwUU5NvVRdBpaCEJl5V4/TAaNlW528iHzdWmajYvduOlWm2swNJNmb2OM064/KV+bxgX3OUr41bGBRrL4kYX8y1xpDmTq6/w0T0lI=","ak.pv":"1","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script><link href="https://s.go-mpulse.net/boomerang/QR8SX-KLXJA-4UTHM-FV4Q4-3ZQQ7" rel="preload" as="script"><iframe src="about:blank" title="" role="presentation" loading="eager" style="width: 0px; height: 0px; border: 0px; display: none;" cd_frame_id_="6c0e4102dcc9f390dc465844befa0275"></iframe></head>
+
+<body class="Tudo" onload="FocarPrimeiro();"> 
+
+<div id="Topo">
+ <div style="height: 20px;"></div>
+ <div id="Empresa">  Norber Software   </div>
+ <!--div id="Produto">Ponto Web</div-->
+ <div id="Produto">NewWeb</div>
+</div>
+
+<div id="MenuBarra"><div id="MenuBarraDentro">&nbsp;</div></div>
+<div id="MenuEspaco" style="margin-top: 40px;"></div>
+
+
+
+
+<form name="form" action="default.asp" method="post" onsubmit="return checkrequired(this)">
+<input type="hidden" name="Default__" id="Default__" value="">
+
+
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+<div class="quadroLogin_Borda">
+ <div class="quadroLogin_Conteudo">
+
+  <div class="quadroLogin_Linha" style="">
+   <div class="quadroLogin_Label">Empresa</div>
+   <div class="quadroLogin_Campo">
+
+				<input class="Campo" type="text" name="CodEmpresa" id="CodEmpresa" size="4" readonly="false" value="33">
+				<input class="Campo" type="text" name="requiredempresa" id="requiredempresa" readonly="false" value="POSITIVO S MAIS" size="50">
+
+   </div>
+  </div>
+
+  <div class="quadroLogin_Linha">
+
+   <div class="quadroLogin_Label">
+		Código do Usuário
+   </div>
+   <div class="quadroLogin_Campo">
+    <input class="Campo" type="text" value="" name="requiredusuario" size="25" maxlength="9" id="requiredusuario">
+   </div>
+
+  </div>
+
+  <div class="quadroLogin_Linha">
+   <div class="quadroLogin_Label">Senha</div>
+   
+   <div class="quadroLogin_Campo">
+	<script>   
+		function show() {
+		var senha = document.getElementById("requiredsenha");
+			if (senha.type === "password") 
+			{
+				senha.type = "text";
+				document.getElementById("CampoOlho").setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpCAMAAAAOXP0IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFBUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKurq////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUlJQAAAI+PjwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIGBgQAAADAwMEBAQICAgL+/v////5+0SSAAAABldFJOUwACBAUGDBARFhobHh8mJygqKywtMTQ2PT9AQENESU1PUVRaX2BjZmprbG9xdXd7fH+AgIKEiIuNkZWWmJqcnqCjpaytsba3uLu/v7/CxMXIzM3P0dfb3d7f5OTp6uvu7/Hy9PX+zfrOigAAAAlwSFlzAAAywAAAMsABKGRa2wAAAshJREFUaEPtmelW1DAUgMd9wQ33FhdcEBcYLe6KIihqRXBHUVxQ48z0/R/ANPemdEkyTnsTz+Hk+zNNJslH0jT30ml5PB7PfyEM8cI2YZK4UYVJlwV4bZVUxFyowqTHRS5UKGIRlq2xgKIYy9bYgKKEQLR5eHTy4eLq6vK7pWdzMxcPYnWBhaTTVLTryisxRI6V2Qv78FvJFIoYlgdm09knMECFj5exiSAT1XyS9k+vQX8lKxNbsF1jURt66/na3iYaNhSdfAu9U5af3hk/MbRj6MDRkdOT87+wlvPjEm85JQ47Ti3RzgfQmfP+Wvn2H7v6HL9jbLqh6Mx36My+3TuOVUUOZX/JZymqddidg76M3cAKBXvvihbdRqJx6MvmD2OFmj1vmoomoO+XMSzrOf+7kSiCvo+3Y9lAthkWsWIgbkHfR1g0AbFc0MaqQTj1M+15H0smcqJ6592RD4zdxmsTedHaKFYOxu6X1/HKRCaKbrLXw1hJQBDHYtg4wl0m06B0141shbrmBGCRCJmNNKjkSYkiG0kDPl5FehZE1QlxLIgCGLGEjRnBiCV6yR/xaX3pujKWE5qUmyETEe7wfqLaqVAFlakgolo/tSh3fHNoJqUwlUVEk8LBclRE9dPwPNUpKUQky1cxqUQky1d+apUiEhMOJVGLSG4UjoToROSmjk5EbdKLiE0GEYVpfe+ZRKS7vCPTIBUUgSML7DKWKyEJUTiWUURxm+TymUU0UVcsn1lEFd/5pGQapIEqkQj4GZSP5VWoTK0XrkTZSxoNRPlKfxHNDudk/5froEr2+okIlw5FkSrtI90MUsRTl6orplq5gohTctF5yqKUKIJjMCbUKEV2cCZaf3eCFbbwotrkXzvZRb4NciYiOz11+F/fakPw69u/EcqkAcsW+QQiypigAYKdAxGonIhSlSMRz8Px0+PxeDYerdZfG2vsXpfzslYAAAAASUVORK5CYII=");					
+			} else {
+				senha.type = "password";
+				document.getElementById("CampoOlho").setAttribute("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpCAMAAAAOXP0IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEyUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALzy9n4AAABldFJOUwACBAUGDBARFhobHh8mJygqKywtMTI0Nj0/QENESU1PUVRaW19gY2Zqa2xvcXV3e3x/gIKEiImLjZGVlpeYmpyen6Cjpaytsba3uLu/wsTFyMzNz9HX293e5Onq6+7v8fL09fb848iv3QAAAAlwSFlzAAAywAAAMsABKGRa2wAAAgtJREFUaEPt1mdD2zAQBuAwygp7E0qZZUPArLZQ9q7ZI4SZFvT//wIkekOKUSzZuuTTPZ8s+XyHzgpyhDHGGGOsGEqb+qbXj+/uEpcnhzubY82YplY9eSo8ktsj9bhLpmRgD9m9biYQQqJhNYW8KsmpMsRZiyNlXvfxLwi10nOBfG8SBz9Hv0Yro40d3b3T+/8w++ZpHNHhVa0hlxBXs97X3znzB/eEWMVcWP2PSPSw3IWpj1re/5LTFkyFMoQsYh4TCnW/EPM8iJkQRpFjvxUTarXniFvERGBT8vnbYYzz+/4iQ1cwDsiRT+9WYOynDcsKtaol+ewWhhqlGzI8jnEQ3/6mn/yNkd5kppLAKJD2ayF+4NpE+l9Jqg+DYGqO5nBlZkGcNeGSQMx1M01yHQcz/+kux4W1mKySpSpGwlMnrTC18PPyKECpzwuSXNynEkNelRhiaCCpGmJI5GudRNhA9WbIIdsWukJ0r0pfiah/+kJUizKpRLMoJPOHWCsmS6Jpn1klivb5/2qzKCohlQ6ibSCTDqJtIJMOom0gkw6ibSCTDqJtFG/vmVWiODj8DvYckiMKufwh1o5J+2hOXZP2EZ3v+kVRfUjoF0VVSXtwkBXS9Y/oe0VCTjXE0Cjed3n+BpK2TlJvC8LNkON8ruVSdy7LU6tgdTIcR74wt7BlGGOMMcYYY8xIJPIKHKNKzvKePSkAAAAASUVORK5CYII=");										
+			}
+		}		
+	</script>
+    <input class="Campo" type="password" name="requiredsenha" id="requiredsenha" size="25" maxlength="20" autocomplete="off">
+	<img class="CampoOlho" id="CampoOlho" onclick="show()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpCAMAAAAOXP0IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEyUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALzy9n4AAABldFJOUwACBAUGDBARFhobHh8mJygqKywtMTI0Nj0/QENESU1PUVRaW19gY2Zqa2xvcXV3e3x/gIKEiImLjZGVlpeYmpyen6Cjpaytsba3uLu/wsTFyMzNz9HX293e5Onq6+7v8fL09fb848iv3QAAAAlwSFlzAAAywAAAMsABKGRa2wAAAgtJREFUaEPt1mdD2zAQBuAwygp7E0qZZUPArLZQ9q7ZI4SZFvT//wIkekOKUSzZuuTTPZ8s+XyHzgpyhDHGGGOsGEqb+qbXj+/uEpcnhzubY82YplY9eSo8ktsj9bhLpmRgD9m9biYQQqJhNYW8KsmpMsRZiyNlXvfxLwi10nOBfG8SBz9Hv0Yro40d3b3T+/8w++ZpHNHhVa0hlxBXs97X3znzB/eEWMVcWP2PSPSw3IWpj1re/5LTFkyFMoQsYh4TCnW/EPM8iJkQRpFjvxUTarXniFvERGBT8vnbYYzz+/4iQ1cwDsiRT+9WYOynDcsKtaol+ewWhhqlGzI8jnEQ3/6mn/yNkd5kppLAKJD2ayF+4NpE+l9Jqg+DYGqO5nBlZkGcNeGSQMx1M01yHQcz/+kux4W1mKySpSpGwlMnrTC18PPyKECpzwuSXNynEkNelRhiaCCpGmJI5GudRNhA9WbIIdsWukJ0r0pfiah/+kJUizKpRLMoJPOHWCsmS6Jpn1klivb5/2qzKCohlQ6ibSCTDqJtIJMOom0gkw6ibSCTDqJtFG/vmVWiODj8DvYckiMKufwh1o5J+2hOXZP2EZ3v+kVRfUjoF0VVSXtwkBXS9Y/oe0VCTjXE0Cjed3n+BpK2TlJvC8LNkON8ruVSdy7LU6tgdTIcR74wt7BlGGOMMcYYY8xIJPIKHKNKzvKePSkAAAAASUVORK5CYII=" width="18" height="18" style="vertical-align:bottom">	
+	<input class="BotaoAchatado" type="submit" name="Submit" value="  OK  ">
+   </div>
+
+<input type="hidden" name="senhacrip" id="senhacrip">
+  </div>
+
+  <div class="quadroLogin_Linha">
+   <div class="quadroLogin_Label"></div>
+   <div class="quadroLogin_Campo">
+    <input type="checkbox" name="Alterar" value="checkbox">Alterar Senha
+   </div>
+
+   <div class="quadroLogin_Campo">
+    <input title="Ao utilizar esta opção você receberá por Email um Token e será direcionado para a tela de Troca de Senha, preencha a nova senha e token para efetuar a troca. Durante este processo a tela de Troca de Senha deverá permanecer aberta." type="checkbox" name="RecurarSenhaEmail" id="RecurarSenhaEmail" value="checkbox">Esqueci minha Senha
+   </div>
+
+ </div>
+ <div class="quadroLogin_Linha"></div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.form.addEventListener("submit", function (e) {
+      const CodEmpresa = document.getElementById("CodEmpresa").value.trim();
+			const requiredusuario = document.getElementById("requiredusuario").value.trim();
+			const requiredsenha = document.getElementById("requiredsenha").value.trim();
+      if (!CodEmpresa || !requiredusuario || !requiredsenha) {
+        e.preventDefault();
+        alert("Preencha todos os campos antes de enviar.");
+      }
+    });
+  });
+</script>
+
+
+
+<iframe src="../../WebPontoDotNet/Erros/Session.aspx" width="600" height="400" frameborder="0" style="border: none; display: none;" title="Checar" id="meuIframe" cd_frame_id_="8923e44b71fdf155006c59511f402b1f">
+</iframe>
+
+
+</div></form></body></html>
